@@ -6,15 +6,15 @@ from event import EventApp
 from lib.screen.display import Display
 import lib.ext.sensors as sensors
 from machine import Timer
-
-
+import gc
 
 class TimeTableApp(App):
     def __init__(self, disp, buttons, tim):
-        super().__init__(name="Main Menu", display=disp, buttons=buttons, timer=tim,
+        super().__init__(name="Timetable", display=disp, buttons=buttons, timer=tim,
                          btn_up=self.btn_up,
                          btn_down=self.btn_down,
-                         btn_b=self.btn_b)
+                         btn_b=self.btn_b,
+                         btn_y=self.btn_y)
 
         cont = self.get_cont()
 
@@ -39,4 +39,10 @@ class TimeTableApp(App):
         focused = lv.group_get_focused(self.group)
         app = self.item_ids[id(focused)].app_name
         subject = self.item_ids[id(focused)].subject
-        ac_app = app(self.disp, self.buttons, self.tim,subject, slot=0)
+        event_app = app(self.disp, self.buttons, self.tim,subject, slot=0)
+    
+    def btn_y(self, x):
+        self.qr = None
+        from main_menu import MainMenuApp
+        gc.collect()
+        MainMenuApp(self.disp, self.buttons, self.tim)

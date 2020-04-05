@@ -84,7 +84,6 @@ class Button():
         self.label = None
         if subject:
             self.subject = subject
-
         if text:
             self.set_text(text, font_size)
         if app:

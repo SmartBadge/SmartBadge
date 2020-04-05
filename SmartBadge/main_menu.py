@@ -4,6 +4,7 @@ from lib.app import App
 from name import NameApp
 from pong import PongMenuApp
 from maze import MazeMenuApp
+from timetable import TimeTableApp
 
 
 class MainMenuApp(App):
@@ -18,13 +19,14 @@ class MainMenuApp(App):
         cont = self.get_cont()
 
         self.add_item("timetable", Button(cont.lv_obj, text="Timetable",
-                                          width=cont.half(), app="timetable"), selectable=True)
+                                          width=cont.half(), app=TimeTableApp), selectable=True)
         self.add_item("maze_game", Button(cont.lv_obj, text="Maze Game",
                                           width=cont.half(), app=MazeMenuApp), selectable=True)
         self.add_item("pong", Button(cont.lv_obj, text="Pong",
                                      width=cont.half(), app=PongMenuApp), selectable=True)
         self.add_item("name", Button(cont.lv_obj, text="Name",
                                      width=cont.half(), app=NameApp), selectable=True)
+        self.add_item("about", Button(cont.lv_obj, text="About"), selectable=True)
 
         self.load_screen()
 

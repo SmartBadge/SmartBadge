@@ -1,17 +1,14 @@
 import lvgl as lv
-from lib.screen.widgets import *
+from lib.screen.widgets import Label
 from timedata import TimeData
 from lib.app import App
-from main_menu import MainMenuApp
-
 
 class EventApp(App):
 
     def __init__(self, disp, buttons, tim, subject, slot):
-        super().__init__(name="Name", display=disp, buttons=buttons, timer=tim,
+        super().__init__(name="Event", display=disp, buttons=buttons, timer=tim,
                          btn_left=self.btn_left,
-                         btn_right=self.btn_right,
-                         )
+                         btn_right=self.btn_right)
 
         self.subject = subject 
         self.slot = slot
@@ -26,13 +23,7 @@ class EventApp(App):
 
         self.add_item("Title", self.title_widget)
         self.add_item("Time", self.time_widget)
-        self.add_item("Location", self.location_widget)
-
-        #self.add_item("Back", Button(cont.lv_obj, text="Back",
-                                          #width=cont.half(), app=EventApp), selectable=True)
-
-        #self.add_item("Forward", Button(cont.lv_obj, text="forward",
-                                          #width=cont.half(), app=EventApp), selectable=True)
+        self.add_item("Location", self.location_widget)        
 
         self.load_screen()
 
@@ -46,7 +37,7 @@ class EventApp(App):
             self.time_widget.update_text(time)
             self.location_widget.update_text(location)
         except:
-            from newtimetable import TimeTableApp
+            from timetable import TimeTableApp
             mm = TimeTableApp(self.disp, self.buttons, self.tim)
  
 
@@ -59,7 +50,7 @@ class EventApp(App):
             self.time_widget.update_text(time)
             self.location_widget.update_text(location)
         except:
-            from newtimetable import TimeTableApp
+            from timetable import TimeTableApp
             mm = TimeTableApp(self.disp, self.buttons, self.tim)
  
 
