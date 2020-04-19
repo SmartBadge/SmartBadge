@@ -81,6 +81,7 @@ class MazeGameApp(GameApp):
         # wall with exit
         self.load_screen()
         self.game_over = False
+        self.tim = tim
         gc.collect()
         # internal walls
         grid = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,],
